@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="center-flex">
+       <fieldset class="l2">
+        <legend style="text-align: center; font-size: xx-large;">Temperature Converter</legend>
+    
+        <div class="bor"> 
+
+    <input required type="number" id="temp" placeholder="Degree" autocomplete="off" >
+    <br>
+    <label class="l1">Type</label>
+    <select name="opt" id="typ" class="sel">
+        <option value="cel">Celcius</option>
+        <option value="far">Fahrenhite</option>
+        <option value="kel">Kelvin</option>
+    </select>
+    <button onclick="calc_temp()">Convert Into</button>
+    <select name="conv" id="into" class="sel2">
+        <option value="cel">Celcius</option>
+        <option value="far">Fahrenhite</option>
+        <option value="kel">Kelvin</option>
+    </select>
+    <div id="result" class="box">Result</div>
+ 
+    
+</div>
+</fieldset>
+</div>
+
+<script>
+    function calc_temp()
+    {
+        x=document.getElementById('typ').value;
+        t=document.getElementById('temp').value;
+        c=document.getElementById('into').value;
+    
+        if(t!=="")
+        {
+        if(x=="cel")
+        {
+            if(c=="far")
+            {
+                res=(t*9/5)+32;
+                document.getElementById('result').innerHTML=res+" °F";
+            }
+            else if(c=="kel")
+            {
+                res=Number(t)+273.15;
+                document.getElementById('result').innerHTML=res+" K";
+            }
+            else if(c=="cel")
+            {
+                res=t;
+                document.getElementById('result').innerHTML=res+" °C";
+            }
+
+            
+        }
+        else if(x=="far")
+        {
+            
+            if(c=="far")
+            {
+                res=t;
+                document.getElementById('result').innerHTML=res+" °F";
+            }
+            else if(c=="kel")
+            {
+                res=((t-32)*5/9)+273.15;
+                document.getElementById('result').innerHTML=res.toFixed(3)+" K";
+            }
+            else if(c=="cel")
+            {
+                res=(t-32)*5/9;
+                document.getElementById('result').innerHTML=res.toFixed(3)+" °C";
+            }
+        }
+        else if(x=="kel")
+        {
+            if(c=="far")
+            {
+                res=((t-273.15)*9/5)+32;
+                document.getElementById('result').innerHTML=res.toFixed(3)+" °F";
+            }
+            else if(c=="kel")
+            {
+                res=t;
+                document.getElementById('result').innerHTML=res+" K";
+            }
+            else if(c=="cel")
+            {
+                res=t-273.15;
+                document.getElementById('result').innerHTML=res.toFixed(3)+" °C";
+            }
+        }
+        }
+        else 
+        {
+            document.getElementById('result').innerHTML="Please Enter temperature"
+        }
+    }
+</script>
+</body>
+</html>
